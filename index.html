@@ -8,92 +8,66 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; min-height: 100vh; }
-
-header {
-background: linear-gradient(135deg, #1a3a5c, #2d6a9f);
-color: white; padding: 20px 24px; text-align: center;
-box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-header h1 { font-size: 1.6rem; margin-bottom: 4px; }
-header p { font-size: 0.9rem; opacity: 0.85; }
-.badge { display:inline-block; background:#f0a500; color:white; font-size:0.75rem; font-weight:bold; padding:2px 10px; border-radius:20px; margin-top:8px; }
-
-.intro-box {
-max-width:1100px; margin:20px auto 0; padding:0 20px;
-}
-.intro-inner {
-background:white; border-radius:12px; padding:22px 24px;
-box-shadow:0 2px 8px rgba(0,0,0,0.08); border-left:5px solid #2d6a9f;
-}
-
-.container { display:flex; gap:20px; padding:20px; max-width:1100px; margin:0 auto; flex-wrap:wrap; }
-
-.left-panel { flex:1 1 420px; display:flex; flex-direction:column; gap:16px; }
-.right-panel { flex:1 1 300px; display:flex; flex-direction:column; gap:16px; }
-
-.card { background:white; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
-.card h2 { font-size:1rem; color:#1a3a5c; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
-
-.form-row { display:flex; flex-direction:column; gap:10px; }
-label { font-size:0.85rem; color:#555; font-weight:600; }
-input, select { width:100%; padding:9px 12px; border:1.5px solid #d0d9e4; border-radius:8px; font-size:0.9rem; background:#fafcff; transition:border 0.2s; }
-input:focus { border-color:#2d6a9f; outline:none; }
-
-.date-nav { display:flex; align-items:center; gap:10px; }
-.date-nav button { background:#e8f0f8; border:none; border-radius:8px; padding:8px 14px; cursor:pointer; font-size:1rem; color:#1a3a5c; transition:background 0.2s; }
-.date-nav button:hover { background:#2d6a9f; color:white; }
-.date-nav span { flex:1; text-align:center; font-weight:700; font-size:0.9rem; color:#1a3a5c; }
-
-.slots-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:4px; }
-.slot-btn { padding:8px 4px; border-radius:8px; border:2px solid #d0d9e4; background:white; cursor:pointer; font-size:0.78rem; font-weight:600; color:#333; transition:all 0.15s; text-align:center; }
-.slot-btn:hover:not(.full):not(.past) { border-color:#2d6a9f; background:#e8f0f8; }
-.slot-btn.selected { border-color:#2d6a9f; background:#2d6a9f; color:white; }
-.slot-btn.full { background:#fce8e8; border-color:#e57373; color:#c0392b; cursor:not-allowed; }
-.slot-btn.partial { border-color:#f0a500; background:#fff8e6; }
-.slot-btn.past { opacity:0.4; cursor:not-allowed; }
-.slot-count { display:block; font-weight:400; font-size:0.7rem; opacity:0.8; margin-top:2px; }
-
-.legend { display:flex; gap:12px; flex-wrap:wrap; font-size:0.75rem; color:#666; margin-top:8px; }
-.legend-item { display:flex; align-items:center; gap:5px; }
-.legend-dot { width:12px; height:12px; border-radius:3px; border:2px solid transparent; }
-
-.btn-register { width:100%; padding:12px; background:linear-gradient(135deg,#1a3a5c,#2d6a9f); color:white; border:none; border-radius:10px; font-size:1rem; font-weight:700; cursor:pointer; transition:opacity 0.2s; margin-top:4px; }
-.btn-register:hover { opacity:0.9; }
-.btn-register:disabled { opacity:0.5; cursor:not-allowed; }
-
-.msg { padding:10px 14px; border-radius:8px; font-size:0.85rem; font-weight:600; text-align:center; }
-.msg.success { background:#e6f9ee; color:#2d7a4f; }
-.msg.error { background:#fce8e8; color:#c0392b; }
-
-.next-card { background:linear-gradient(135deg,#1a3a5c,#2d6a9f); color:white; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
-.next-card h2 { font-size:0.9rem; opacity:0.85; margin-bottom:8px; }
-.next-visit { font-size:1.5rem; font-weight:800; margin-bottom:4px; }
-.next-none { font-size:0.9rem; opacity:0.7; font-style:italic; }
-
-.list-card { max-height:520px; overflow-y:auto; }
-.list-card h2 { position:sticky; top:0; background:white; padding-bottom:10px; z-index:1; }
-
-.visit-item { display:flex; justify-content:space-between; align-items:flex-start; padding:10px 0; border-bottom:1px solid #f0f4f8; gap:8px; }
-.visit-item:last-child { border-bottom:none; }
-.visit-time { font-weight:800; font-size:0.85rem; color:#1a3a5c; min-width:90px; }
-.visit-date-tag { font-size:0.7rem; color:#888; font-weight:400; display:block; }
-.visit-names { font-size:0.82rem; color:#444; flex:1; }
-.visit-badge { font-size:0.65rem; padding:2px 7px; border-radius:10px; font-weight:700; white-space:nowrap; }
-.visit-badge.full { background:#fce8e8; color:#c0392b; }
-.visit-badge.open { background:#e6f9ee; color:#2d7a4f; }
-.delete-btn { background:none; border:none; cursor:pointer; color:#ccc; font-size:1rem; padding:0 2px; transition:color 0.2s; }
-.delete-btn:hover { color:#e57373; }
-.empty-state { text-align:center; color:#aaa; font-size:0.85rem; padding:20px 0; }
-
-.tab-bar { display:flex; gap:0; margin-bottom:14px; border-bottom:2px solid #e8f0f8; }
-.tab { flex:1; padding:8px; text-align:center; font-size:0.82rem; font-weight:700; cursor:pointer; color:#888; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.15s; }
-.tab.active { color:#1a3a5c; border-bottom-color:#2d6a9f; }
-
-.spinner { text-align:center; color:#aaa; font-size:0.85rem; padding:16px 0; }
-
-@media (max-width:600px) { .slots-grid { grid-template-columns:repeat(2,1fr); } header h1 { font-size:1.3rem; } }
+  header { background: linear-gradient(135deg, #1a3a5c, #2d6a9f); color: white; padding: 20px 24px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+  header h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  header p { font-size: 0.9rem; opacity: 0.85; }
+  .badge { display:inline-block; background:#f0a500; color:white; font-size:0.75rem; font-weight:bold; padding:2px 10px; border-radius:20px; margin-top:8px; }
+  .intro-box { max-width:1100px; margin:20px auto 0; padding:0 20px; }
+  .intro-inner { background:white; border-radius:12px; padding:22px 24px; box-shadow:0 2px 8px rgba(0,0,0,0.08); border-left:5px solid #2d6a9f; }
+  .container { display:flex; gap:20px; padding:20px; max-width:1100px; margin:0 auto; flex-wrap:wrap; }
+  .left-panel { flex:1 1 420px; display:flex; flex-direction:column; gap:16px; }
+  .right-panel { flex:1 1 300px; display:flex; flex-direction:column; gap:16px; }
+  .card { background:white; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+  .card h2 { font-size:1rem; color:#1a3a5c; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .form-row { display:flex; flex-direction:column; gap:10px; }
+  label { font-size:0.85rem; color:#555; font-weight:600; }
+  input { width:100%; padding:9px 12px; border:1.5px solid #d0d9e4; border-radius:8px; font-size:0.9rem; background:#fafcff; transition:border 0.2s; }
+  input:focus { border-color:#2d6a9f; outline:none; }
+  .date-nav { display:flex; align-items:center; gap:10px; }
+  .date-nav button { background:#e8f0f8; border:none; border-radius:8px; padding:8px 14px; cursor:pointer; font-size:1rem; color:#1a3a5c; transition:background 0.2s; }
+  .date-nav button:hover { background:#2d6a9f; color:white; }
+  .date-nav span { flex:1; text-align:center; font-weight:700; font-size:0.9rem; color:#1a3a5c; }
+  .slots-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:4px; }
+  .slot-btn { padding:8px 4px; border-radius:8px; border:2px solid #d0d9e4; background:white; cursor:pointer; font-size:0.78rem; font-weight:600; color:#333; transition:all 0.15s; text-align:center; }
+  .slot-btn:hover:not(.full):not(.past) { border-color:#2d6a9f; background:#e8f0f8; }
+  .slot-btn.selected { border-color:#2d6a9f; background:#2d6a9f; color:white; }
+  .slot-btn.full { background:#fce8e8; border-color:#e57373; color:#c0392b; cursor:not-allowed; }
+  .slot-btn.partial { border-color:#f0a500; background:#fff8e6; }
+  .slot-btn.past { opacity:0.4; cursor:not-allowed; }
+  .slot-count { display:block; font-weight:400; font-size:0.7rem; opacity:0.8; margin-top:2px; }
+  .legend { display:flex; gap:12px; flex-wrap:wrap; font-size:0.75rem; color:#666; margin-top:8px; }
+  .legend-item { display:flex; align-items:center; gap:5px; }
+  .legend-dot { width:12px; height:12px; border-radius:3px; border:2px solid transparent; }
+  .btn-register { width:100%; padding:12px; background:linear-gradient(135deg,#1a3a5c,#2d6a9f); color:white; border:none; border-radius:10px; font-size:1rem; font-weight:700; cursor:pointer; transition:opacity 0.2s; margin-top:4px; }
+  .btn-register:hover { opacity:0.9; }
+  .btn-register:disabled { opacity:0.5; cursor:not-allowed; }
+  .msg { padding:10px 14px; border-radius:8px; font-size:0.85rem; font-weight:600; text-align:center; }
+  .msg.success { background:#e6f9ee; color:#2d7a4f; }
+  .msg.error { background:#fce8e8; color:#c0392b; }
+  .next-card { background:linear-gradient(135deg,#1a3a5c,#2d6a9f); color:white; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+  .next-card h2 { font-size:0.9rem; opacity:0.85; margin-bottom:8px; }
+  .next-visit { font-size:1.5rem; font-weight:800; margin-bottom:4px; }
+  .next-none { font-size:0.9rem; opacity:0.7; font-style:italic; }
+  .list-card { max-height:520px; overflow-y:auto; }
+  .list-card h2 { position:sticky; top:0; background:white; padding-bottom:10px; z-index:1; }
+  .visit-item { display:flex; justify-content:space-between; align-items:flex-start; padding:10px 0; border-bottom:1px solid #f0f4f8; gap:8px; }
+  .visit-item:last-child { border-bottom:none; }
+  .visit-time { font-weight:800; font-size:0.85rem; color:#1a3a5c; min-width:90px; }
+  .visit-date-tag { font-size:0.7rem; color:#888; font-weight:400; display:block; }
+  .visit-names { font-size:0.82rem; color:#444; flex:1; }
+  .visit-badge { font-size:0.65rem; padding:2px 7px; border-radius:10px; font-weight:700; white-space:nowrap; }
+  .visit-badge.full { background:#fce8e8; color:#c0392b; }
+  .visit-badge.open { background:#e6f9ee; color:#2d7a4f; }
+  .delete-btn { background:none; border:none; cursor:pointer; color:#ccc; font-size:1rem; padding:0 2px; transition:color 0.2s; }
+  .delete-btn:hover { color:#e57373; }
+  .empty-state { text-align:center; color:#aaa; font-size:0.85rem; padding:20px 0; }
+  .tab-bar { display:flex; gap:0; margin-bottom:14px; border-bottom:2px solid #e8f0f8; }
+  .tab { flex:1; padding:8px; text-align:center; font-size:0.82rem; font-weight:700; cursor:pointer; color:#888; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.15s; }
+  .tab.active { color:#1a3a5c; border-bottom-color:#2d6a9f; }
+  .spinner { text-align:center; color:#aaa; font-size:0.85rem; padding:16px 0; }
+  .sync-bar { text-align:right; font-size:0.72rem; color:#aaa; padding: 0 20px 4px; max-width:1100px; margin:0 auto; }
+  @media (max-width:600px) { .slots-grid { grid-template-columns:repeat(2,1fr); } header h1 { font-size:1.3rem; } }
 </style>
-
 </head>
 <body>
 
@@ -122,8 +96,8 @@ input:focus { border-color:#2d6a9f; outline:none; }
 </div>
 
 <div id="mainForm" style="display:none">
+<div class="sync-bar" id="syncBar">⏳ Cargando...</div>
 <div class="container">
-
   <div class="left-panel">
     <div class="card">
       <h2>📅 Elegí el día</h2>
@@ -133,29 +107,24 @@ input:focus { border-color:#2d6a9f; outline:none; }
         <button onclick="changeDay(1)">›</button>
       </div>
     </div>
-
-```
-<div class="card">
-  <h2>⏰ Elegí el horario</h2>
-  <div class="slots-grid" id="slotsGrid"><div class="spinner">Cargando turnos...</div></div>
-  <div class="legend" style="margin-top:10px;">
-    <div class="legend-item"><div class="legend-dot" style="background:#e8f0f8;border-color:#2d6a9f"></div> Disponible</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#fff8e6;border-color:#f0a500"></div> 1 lugar</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#fce8e8;border-color:#e57373"></div> Lleno</div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>👤 Tus datos</h2>
-  <div class="form-row">
-    <div><label>Tu nombre *</label><input type="text" id="name1" placeholder="Nombre y apellido" /></div>
-    <div><label>Acompañante (opcional)</label><input type="text" id="name2" placeholder="Nombre y apellido" /></div>
-    <button class="btn-register" onclick="register()" id="regBtn">Reservar turno</button>
-    <div id="msg" style="display:none"></div>
-  </div>
-</div>
-```
-
+    <div class="card">
+      <h2>⏰ Elegí el horario</h2>
+      <div class="slots-grid" id="slotsGrid"><div class="spinner">Cargando...</div></div>
+      <div class="legend" style="margin-top:10px;">
+        <div class="legend-item"><div class="legend-dot" style="background:#e8f0f8;border-color:#2d6a9f"></div> Disponible</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#fff8e6;border-color:#f0a500"></div> 1 lugar</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#fce8e8;border-color:#e57373"></div> Lleno</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>👤 Tus datos</h2>
+      <div class="form-row">
+        <div><label>Tu nombre *</label><input type="text" id="name1" placeholder="Nombre y apellido" /></div>
+        <div><label>Acompañante (opcional)</label><input type="text" id="name2" placeholder="Nombre y apellido" /></div>
+        <button class="btn-register" onclick="register()" id="regBtn">Reservar turno</button>
+        <div id="msg" style="display:none"></div>
+      </div>
+    </div>
   </div>
 
   <div class="right-panel">
@@ -163,28 +132,26 @@ input:focus { border-color:#2d6a9f; outline:none; }
       <h2>🔔 Próxima visita</h2>
       <div id="nextContent"><span class="next-none">Cargando...</span></div>
     </div>
-
-```
-<div class="card list-card">
-  <h2>📋 Turnos registrados</h2>
-  <div class="tab-bar">
-    <div class="tab active" onclick="setTab('upcoming')" id="tab-upcoming">Próximos</div>
-    <div class="tab" onclick="setTab('all')" id="tab-all">Todos</div>
+    <div class="card list-card">
+      <h2>📋 Turnos registrados</h2>
+      <div class="tab-bar">
+        <div class="tab active" onclick="setTab('upcoming')" id="tab-upcoming">Próximos</div>
+        <div class="tab" onclick="setTab('all')" id="tab-all">Todos</div>
+      </div>
+      <div id="visitList"><div class="spinner">Cargando...</div></div>
+    </div>
   </div>
-  <div id="visitList"><div class="spinner">Cargando...</div></div>
-</div>
-```
-
-  </div>
-
 </div>
 </div>
 
 <script>
+  // ── Config ─────────────────────────────────────────────
+  const FIREBASE_URL = "https://visitas-pampa-default-rtdb.firebaseio.com/visits";
+  // Fallback: usamos jsonbin con proxy CORS
   const BIN_ID  = "69bf344caa77b81da907c8da";
   const API_KEY = "$2a$10$GGFic.Aoa/zbh7/pyaOuTO2QT0oJhPWSR16K502xz4RuWtRQc5Xmi";
-  const BASE    = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-  const HEADERS = { "Content-Type":"application/json", "X-Master-Key": API_KEY };
+  const PROXY   = "https://corsproxy.io/?";
+  const BIN_URL = `${PROXY}https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
   const SLOTS_START = 8, SLOTS_END = 21, MAX = 2;
   let visits = [];
@@ -193,18 +160,36 @@ input:focus { border-color:#2d6a9f; outline:none; }
   let currentTab = 'upcoming';
   let saving = false;
 
-  // ── API ────────────────────────────────────────────────
+  // ── API via corsproxy ──────────────────────────────────
   async function loadVisits() {
     try {
-      const r = await fetch(BASE + "/latest", { headers: { "X-Master-Key": API_KEY } });
+      const r = await fetch(BIN_URL + "/latest", {
+        headers: { "X-Master-Key": API_KEY }
+      });
       const d = await r.json();
       visits = (d.record || []).filter(v => v && v.id && v.id !== "init");
-    } catch(e) { visits = []; }
+      setSyncBar("✅ Actualizado " + new Date().toLocaleTimeString('es', {hour:'2-digit',minute:'2-digit'}));
+    } catch(e) {
+      setSyncBar("⚠️ Sin conexión — mostrando datos locales");
+      const local = localStorage.getItem('pampa_visits');
+      if (local) visits = JSON.parse(local).filter(v => v && v.id && v.id !== "init");
+    }
     render();
   }
 
   async function saveVisits() {
-    await fetch(BASE, { method:"PUT", headers: HEADERS, body: JSON.stringify(visits) });
+    localStorage.setItem('pampa_visits', JSON.stringify(visits));
+    try {
+      await fetch(BIN_URL, {
+        method: "PUT",
+        headers: { "Content-Type":"application/json", "X-Master-Key": API_KEY },
+        body: JSON.stringify(visits)
+      });
+    } catch(e) { console.warn("Save failed, stored locally"); }
+  }
+
+  function setSyncBar(txt) {
+    document.getElementById('syncBar').textContent = txt;
   }
 
   // ── Helpers ────────────────────────────────────────────
@@ -289,14 +274,13 @@ input:focus { border-color:#2d6a9f; outline:none; }
 
   // ── Actions ────────────────────────────────────────────
   function toggleForm(){
-    document.getElementById('mainForm').style.display =
-      document.getElementById('agreeCheck').checked ? 'block' : 'none';
-    if(document.getElementById('agreeCheck').checked) loadVisits();
+    const ok = document.getElementById('agreeCheck').checked;
+    document.getElementById('mainForm').style.display = ok ? 'block' : 'none';
+    if(ok){ renderDateLabel(); loadVisits(); }
   }
 
   function changeDay(d){ selectedDate=new Date(selectedDate); selectedDate.setDate(selectedDate.getDate()+d); selectedSlot=null; render(); }
   function setTab(t){ currentTab=t; document.getElementById('tab-upcoming').classList.toggle('active',t==='upcoming'); document.getElementById('tab-all').classList.toggle('active',t==='all'); renderList(); }
-
   function showMsg(txt,type){ const el=document.getElementById('msg'); el.textContent=txt; el.className='msg '+type; el.style.display='block'; setTimeout(()=>el.style.display='none',3500); }
 
   async function register(){
@@ -305,15 +289,16 @@ input:focus { border-color:#2d6a9f; outline:none; }
     const n2=document.getElementById('name2').value.trim();
     if(!n1) return showMsg('Por favor ingresá tu nombre.','error');
     if(!selectedSlot) return showMsg('Seleccioná un horario primero.','error');
-    const existing=slotVisits(selectedSlot).reduce((a,v)=>a+v.count,0);
-    const adding=n2?2:1;
-    if(existing+adding>MAX) return showMsg(`Solo queda ${MAX-existing} lugar en ese horario.`,'error');
     saving=true;
     document.getElementById('regBtn').disabled=true;
-    // reload fresh before saving to avoid race conditions
+    setSyncBar("⏳ Verificando disponibilidad...");
     await loadVisits();
-    const existingFresh=slotVisits(selectedSlot).reduce((a,v)=>a+v.count,0);
-    if(existingFresh+adding>MAX){ saving=false; document.getElementById('regBtn').disabled=false; return showMsg('Ese horario se llenó justo ahora. Elegí otro.','error'); }
+    const existing=slotVisits(selectedSlot).reduce((a,v)=>a+v.count,0);
+    const adding=n2?2:1;
+    if(existing+adding>MAX){
+      saving=false; document.getElementById('regBtn').disabled=false;
+      return showMsg('Ese horario se llenó justo ahora. Elegí otro.','error');
+    }
     const names=n2?`${n1} y ${n2}`:n1;
     visits.push({ id: Date.now().toString(), slot: selectedSlot, names, count: adding });
     await saveVisits();
@@ -332,10 +317,8 @@ input:focus { border-color:#2d6a9f; outline:none; }
     render();
   }
 
-  // Auto-refresh cada 30 seg para ver turnos de otros
+  // Auto-refresh cada 30 seg
   setInterval(()=>{ if(document.getElementById('agreeCheck').checked) loadVisits(); }, 30000);
-
-  renderDateLabel();
 </script>
 
 </body>
